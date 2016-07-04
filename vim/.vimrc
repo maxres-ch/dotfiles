@@ -1,31 +1,7 @@
-" Beginners .vimrc
+" Initial work by:
 " v0.1 2012-10-22 Philip Thrasher
 "
-" Important things for beginners:
-" * Start out small... Don't jam your vimrc full of things you're not ready to
-"   immediately use.
-" * Read other people's vimrc's.
-" * Use a plugin manager for christ's sake! (I highly recommend vundle)
-" * Spend time configuring your editor... It's important. Its the tool you
-"   spend 8 hours a day crafting your reputation.
-" * remap stupid things to new keys that make you more efficient.
-" * Don't listen to the haters that complain about using non-default
-"   key-bindings. Their argument is weak. I spend most of my time in the editor
-"   on my computer, not others, so I don't care if customizing vim means I'll
-"   have a harder time using remote vim.
-"
-" Below I've left some suggestions of good default settings to have in a bare
-" minimal vimrc. You only what you want to use, and nothing more. I've heavily
-" commented each, and these are what I consider bare necessities, my workflow
-" absolutely depends on these things.
-"
-" If you have any questions, email me at pthrash@me.com
 
-" Setup Vundle:
-" For this to work, you must install the vundle plugin manually.
-" https://github.com/gmarik/vundle
-" To install vundle, copy all the files from the repo into your respective
-" folders within ~/.vim
 set nocompatible " Fuck VI... That's for grandpas.
 filetype off
 
@@ -85,6 +61,8 @@ Plugin 'nvie/vim-flake8'
 Plugin 'tell-k/vim-autopep8'
 " Ansible
 Plugin 'pearofducks/ansible-vim'
+" Powerline
+Plugin 'powerline/powerline'
 
 " YCM
 Plugin 'Valloric/YouCompleteMe'
@@ -98,16 +76,29 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
-" Powerline
-Plugin 'powerline/powerline'
-
+" Fold the things
+set foldmethod=syntax
+set foldlevelstart=1
 " Vim-airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " Python Folding
 Plugin 'tmhedberg/SimpylFold'
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+let xml_syntax_folding=1      " XML
 
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" We have to turn this stuff back on if we want all of our features.
+filetype plugin indent on " Filetype auto-detection
+syntax on " Syntax highlighting
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -201,6 +192,9 @@ map <C-n> :NERDTreeToggle<CR>
 " YCM goto fun
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>hd :YcmCompleter GoToDefinition<CR>
+
+" YCM
+let g:ycm_server_python_interpreter="/usr/bin/python3"
 
 " Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
