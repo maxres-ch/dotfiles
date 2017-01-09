@@ -79,6 +79,10 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
+
+" git goodness
+Plugin 'tpope/vim-fugitive'
+
 " Fold the things
 set foldmethod=syntax
 set foldlevelstart=1
@@ -99,6 +103,7 @@ let xml_syntax_folding=1      " XML
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:ultisnips_python_style="sphinx"
 " We have to turn this stuff back on if we want all of our features.
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
@@ -209,7 +214,8 @@ let g:ycm_server_python_interpreter="/usr/local/bin/python"
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
-
+" don't f-with my comments when in python
+au! FileType python setl nosmartindent
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -217,7 +223,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 " We have to turn this stuff back on if we want all of our features.
-filetype plugin indent on " Filetype auto-detection
+filetype indent plugin on " Filetype auto-detection
 syntax on " Syntax highlighting
 
 
