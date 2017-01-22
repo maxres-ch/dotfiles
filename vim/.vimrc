@@ -205,8 +205,8 @@ map <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>hd :YcmCompleter GoToDefinition<CR>
 
-" YCM
-let g:ycm_server_python_interpreter="/usr/local/bin/python"
+" Set YCM Interpreter
+let g:ycm_server_python_interpreter=$YCM_PYTHON
 
 " Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -241,5 +241,5 @@ set laststatus=2
 
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
-set background=light
-colorscheme solarized
+" set background=light
+colorscheme badwolf

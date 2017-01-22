@@ -79,22 +79,14 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:$HOME/bin:$HOME/.composer/vendor
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 export DATE=`date +%Y-%m-%d`
 export EDITOR='vim'
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-source /usr/local/bin/virtualenvwrapper.sh
-export ANDROID_BUILD=/Users/$USER/Library/Android/sdk/build-tools/latest
-export ANDROID_SDK=/Users/$USER/Library/Android/sdk/platform-tools
-export ANDROID_CLI=/Users/$USER/Library/Android/sdk/tools
 unsetopt auto_name_dirs
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH=T"$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export NVM_DIR="/home/max/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-export PATH="$ANDROID_SDK/:$PATH"
-export PATH="$ANDROID_CLI/:$PATH"
-export PATH="$ANDROID_BUILD/:$PATH"
-export JAVA_HOME="$(/usr/libexec/java_home -v '1.7*')"
-
+[[ -s "$HOME/.local.zshrc" ]] && . "$HOME/.local.zshrc" 
