@@ -83,6 +83,9 @@ Plugin 'honza/vim-snippets'
 " git goodness
 Plugin 'tpope/vim-fugitive'
 
+" git gutter w/ figitive
+Plugin 'airblade/vim-gitgutter'
+
 " Fold the things
 set foldmethod=syntax
 set foldlevelstart=1
