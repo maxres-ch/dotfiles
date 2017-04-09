@@ -204,6 +204,9 @@ let g:ctrlp_max_height = 30
 " Better file manager mapping
 map <C-n> :NERDTreeToggle<CR>
 
+" Flake8 Config
+let g:flake8_show_in_file = 1
+
 " YCM goto fun
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>hd :YcmCompleter GoToDefinition<CR>
