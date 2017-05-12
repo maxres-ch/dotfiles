@@ -4,7 +4,8 @@
 depends:
 	sudo apt-get install stow vim-gtk tmux zsh fonts-powerline cmake
 	
-dotfiles: depends
+dotfiles:
+	# TODO this doesn't scale
 	stow vim -t $(HOME)
 	stow tmux -t $(HOME)
 	stow psql -t $(HOME)
@@ -24,6 +25,6 @@ tmux-plugins: dotfiles
 vim: vim-plugins ycm
 	ehco "Vim and Family installed"
 
-install: vim-plugins tmux-plugins
+install: depends vim-plugins tmux-plugins
 	echo "Installing Dotfiles Completed"
 
