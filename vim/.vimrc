@@ -150,6 +150,8 @@ set virtualedit+=block
 " You'll see it a lot below as <leader>
 let mapleader = ","
 
+" 80th column
+set colorcolumn=80
 
 " So we don't have to press shift when we want to get into command mode.
 nnoremap ; :
@@ -210,6 +212,8 @@ let g:flake8_show_in_file = 1
 " YCM goto fun
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>hd :YcmCompleter GoToDefinition<CR>
+"
+nmap <F6> :set textwidth=72<CR>gqj:set textwidth=79<CR>
 
 " Set YCM Interpreter
 let g:ycm_server_python_interpreter=$YCM_PYTHON
