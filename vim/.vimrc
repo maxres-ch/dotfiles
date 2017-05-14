@@ -67,6 +67,9 @@ Plugin 'powerline/powerline'
 " YCM
 Plugin 'Valloric/YouCompleteMe'
 
+" silver searcher
+Plugin 'rking/ag.vim'
+
 " Rope
 " Bundle 'python-rope/ropevim'
 
