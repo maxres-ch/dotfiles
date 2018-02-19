@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:$HOME/bin:$HOME/.composer/vendor/bin"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:$HOME/.local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -84,9 +84,10 @@ export DATE=`date +%Y-%m-%d`
 export EDITOR='vim'
 export WORKON_HOME=$HOME/.virtualenvs
 unsetopt auto_name_dirs
-export PATH=T"$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export NVM_DIR="/home/max/.nvm"
+export DOTENV="FULL"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.local.zshrc" ]] && . "$HOME/.local.zshrc" 

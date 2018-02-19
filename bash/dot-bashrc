@@ -1,0 +1,16 @@
+
+if [ -f ~/.deb_bashrc ]; then
+    . ~/.deb_bashrc
+fi
+
+if [ -f ~/.sensible.bash ]; then
+    . ~/.sensible.bash
+fi
+
+function nonzero_return() {
+    RETVAL=$?
+        [ $RETVAL -ne 0 ] && echo "$RETVAL"
+    }
+
+export PS1="\[\e[32m\]\h\[\e[m\]:\W[\[\e[31m\]\`nonzero_return\`\[\e[m\]] "
+export TERM=screen-256color

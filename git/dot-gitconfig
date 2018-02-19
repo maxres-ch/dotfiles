@@ -1,0 +1,12 @@
+[alias]
+    graph = log --graph --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(60,trunc)%s (%cN, %cr) %Cred%d' --date-order
+[user]
+	name = Max Resnick
+	email = max@ofmax.li
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
