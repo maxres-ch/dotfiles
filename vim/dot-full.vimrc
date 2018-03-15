@@ -122,7 +122,7 @@ let g:flake8_show_in_file = 1
 
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
-" don't f-with my comments when in python
+"  don't f-with my comments when in python
 au! FileType python setl nosmartindent
 " better key bindings for UltiSnipsExpandTrigger
 " let g:UltiSnipsExpandTrigger = "<tab>"
@@ -138,6 +138,8 @@ let g:UltiSnipsEditSplit="vertical"
 filetype indent plugin on " Filetype auto-detection
 syntax on " Syntax highlighting
 
+" paste mode toggle
+set pastetoggle=<F11>
 
 " JavaScript Folding
 let javascript_enable_domhtmlcss = 1
