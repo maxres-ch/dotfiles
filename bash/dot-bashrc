@@ -1,11 +1,37 @@
+## SMARTER TAB-COMPLETION (Readline bindings) ##
 
-if [ -f ~/.deb_bashrc ]; then
-    . ~/.deb_bashrc
-fi
+# Perform file completion in a case insensitive fashion
+bind "set completion-ignore-case on"
 
-if [ -f ~/.sensible.bash ]; then
-    . ~/.sensible.bash
-fi
+# Display matches for ambiguous patterns at first tab press
+bind "set show-all-if-ambiguous on"
+
+## SANE HISTORY DEFAULTS ##
+
+# Append to the history file, don't overwrite it
+shopt -s histappend
+
+# Record each line as it gets issued
+PROMPT_COMMAND='history -a'
+
+# Huge history. Doesn't appear to slow things down, so why not?
+HISTSIZE=500000
+HISTFILESIZE=100000
+
+# Avoid duplicate entries
+HISTCONTROL="erasedups:ignoreboth"
+
+# Use standard ISO 8601 timestamp
+# %F equivalent to %Y-%m-%d
+# %T equivalent to %H:%M:%S (24-hours format)
+HISTTIMEFORMAT='%F %T '
+
+# Enable incremental history search with up/down arrows (also Readline goodness)
+# Learn more about this here: http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'
 
 function nonzero_return() {
     RETVAL=$?
@@ -14,3 +40,6 @@ function nonzero_return() {
 
 export PS1="\[\e[32m\]\h\[\e[m\]:\W[\[\e[31m\]\`nonzero_return\`\[\e[m\]] "
 export TERM=screen-256color
+export PATH="$PATH:$HOME/.local/bin"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

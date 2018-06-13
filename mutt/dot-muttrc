@@ -1,0 +1,27 @@
+set imap_user           = "max.resnick@moovel.com"
+set imap_keepalive      = 30
+unset imap_passive                             # allow mutt to open new imap connection automatically
+set folder              = "imaps://imap.gmail.com"
+set spoolfile           = "+[Gmail]/All Mail"
+set postponed           = "+[Gmail]/Drafts"
+set header_cache        = ~/.mutt/max.resnick/headers
+set message_cachedir    = ~/.mutt/max.resnick/bodies
+set certificate_file    = ~/.mutt/certificates
+set smtp_url            = "smtp://max.resnick@smtp.gmail.com:587/"
+set move                = no
+macro index,pager I  O  "Mark as read"
+macro index,pager U  O  "Mark as unread"
+macro index,pager gas "=[Gmail]/All Mail"  "Go to all mail"
+macro index,pager gs =[Gmail]/Starred "Go to 'Starred'"
+macro index,pager gd =[Gmail]/Drafts  "Go to 'Drafts'"
+macro index,pager gl ?       "Go to 'Label'"
+macro index,pager gi =INBOX     "Go to inbox"
+macro index,pager gt "=[Gmail]/Sent Mail" "Go to 'Sent Mail'"
+macro index,pager d "=[Gmail]/Trash" "Trash"
+macro index,pager +  =[Gmail]/Important "Mark as important"
+macro index,pager !  =[Gmail]/Spam "Report spam"
+macro index,pager e  "=[All]/Gmail Mail" "Archive conversation"
+
+folder-hook +INBOX 'macro index,pager y "=[Gmail]/All Mail" "Archive conversation"'
+folder-hook +[Gmail]/Trash macro index,pager y =INBOX "Move to inbox"
+folder-hook +[Gmail]/Starred bind  index,pager y flag-message #"Toggle star"

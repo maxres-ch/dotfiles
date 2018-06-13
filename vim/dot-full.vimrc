@@ -5,6 +5,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
+set rtp+=~/tools/fzf
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
 " in the following format:
@@ -17,16 +18,26 @@ Bundle 'gmarik/vundle'
 " https://github.com/flazz/vim-colorschemes#current-colorschemes
 Bundle 'flazz/vim-colorschemes'
 
-Bundle 'ctrlpvim/ctrlp.vim'
+" Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'junegunn/fzf.vim'
 
 " Support for easily toggling comments.
 Bundle 'tpope/vim-commentary'
 
-" In addtion to the above plugins, you'll likely need some for individual
+" better text views
+Plugin 'reedes/vim-pencil'
+" go
+Plugin 'fatih/vim-go'
+
+" stuffs
+Bundle 'vim-scripts/vis'
+" indent + str(key)In addtion to the above plugins, you'll likely need some for individual
 " non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
 " these are required for me, but depending on what code you write, obviously
 " this may differ for you.
 
+" vim many syntax
+Bundle 'sheerun/vim-polyglot'
 " Proper JSON filetype detection, and support.
 Bundle 'leshill/vim-json'
 
@@ -74,6 +85,9 @@ Plugin 'tpope/vim-fugitive'
 " git gutter w/ figitive
 Plugin 'airblade/vim-gitgutter'
 
+" csv things
+Plugin 'chrisbra/csv.vim'
+
 " Fold the things
 set foldmethod=syntax
 set foldlevelstart=1
@@ -102,11 +116,13 @@ let g:ultisnips_python_style="sphinx"
 " source ~/.base.vimrc
 
 " Ctrl-p conf
-let g:ctrlp_max_height = 30
+"let g:ctrlp_max_height = 30
+"
+"" follow symlinks
+"let g:ctrlp_follow_symlinks = 1
 
-" follow symlinks
-let g:ctrlp_follow_symlinks = 1
 
+map <C-p> :FZF<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 " Flake8 Config
@@ -154,7 +170,7 @@ let g:airline_theme='solarized'
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 
 
