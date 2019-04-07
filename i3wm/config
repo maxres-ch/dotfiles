@@ -9,6 +9,9 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# disable touchscreen
+# exec xinput --disable 9
+# exec xrandr --dpi 160
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -26,15 +29,25 @@ font pango:Ubuntu 12
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# i3 lock                                                 
-exec xautolock -time 9 -locker 'i3lock -c 474747' &
+# i3 lock
+exec xautolock -time 5 -locker 'i3lock -c 474747' &
+bindsym $mod+Control+l exec i3lock -c 474747
+
+# FUCK CAPS LOCK
+exec xmodmap -e "clear lock" #disable caps lock switch
+exec xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
 # setup
 exec xrdb -merge ~/.Xresources
 
+# safe setting for file dialogs etc
+floating_minimum_size 200 x 200
+floating_maximum_size 800 x 800
 
 # disable touchscreen
 exec xinput disable 9
+
+exec --no-startup-id udiskie --tray --use-udisks2 &
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
@@ -43,13 +56,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle 
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec rxvt-unicode
+bindsym $mod+Return exec .local/bin/st -t "Simple Terminal" -f "Hack-Regular:style=Semibold:size=10"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -173,8 +186,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks
-        font pango:Ubuntu Mono derivative Powerline 12 
+        status_command py3status
+        font pango:Ubuntu Mono derivative Powerline 12
 }
 
 

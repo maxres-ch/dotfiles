@@ -4,6 +4,7 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
+set rtp+=~/.fzf
 
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
@@ -17,8 +18,6 @@ Bundle 'gmarik/vundle'
 " https://github.com/flazz/vim-colorschemes#current-colorschemes
 Bundle 'flazz/vim-colorschemes'
 
-Bundle 'ctrlpvim/ctrlp.vim'
-
 " Support for easily toggling comments.
 Bundle 'tpope/vim-commentary'
 
@@ -26,6 +25,8 @@ Bundle 'tpope/vim-commentary'
 " non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
 " these are required for me, but depending on what code you write, obviously
 " this may differ for you.
+"
+Bundle 'reedes/vim-pencil'
 
 " Proper JSON filetype detection, and support.
 Bundle 'leshill/vim-json'
@@ -51,8 +52,10 @@ Plugin 'Chiel92/vim-autoformat'
 
 " PEP8
 Plugin 'nvie/vim-flake8'
+
 " Autoflake
 Plugin 'tell-k/vim-autopep8'
+
 " Ansible
 Plugin 'pearofducks/ansible-vim'
 
@@ -73,6 +76,16 @@ Plugin 'tpope/vim-fugitive'
 
 " git gutter w/ figitive
 Plugin 'airblade/vim-gitgutter'
+
+" golang
+Plugin 'fatih/vim-go'
+
+" ledger
+Plugin 'ledger/vim-ledger'
+Plugin 'nathangrigg/vim-beancount'
+
+" fzf
+Plugin 'junegunn/fzf.vim'
 
 " Fold the things
 set foldmethod=syntax
@@ -101,12 +114,9 @@ let g:ultisnips_python_style="sphinx"
 
 " source ~/.base.vimrc
 
-" Ctrl-p conf
-let g:ctrlp_max_height = 30
-
-" follow symlinks
-let g:ctrlp_follow_symlinks = 1
-
+" fzf files
+map <C-p> :FZF<CR>
+"
 map <C-n> :NERDTreeToggle<CR>
 
 " Flake8 Config
@@ -147,6 +157,9 @@ let b:javascript_fold = 1
 
 source ~/.mega.vimrc
 
+" ledger
+let g:ledger_bin = 'hledger'
+
 " Airline settings
 " always show status bar
 set laststatus=2
@@ -154,7 +167,7 @@ let g:airline_theme='solarized'
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 
 

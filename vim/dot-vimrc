@@ -84,6 +84,15 @@ vnoremap ; :
  " Map the key for toggling comments with vim-commentary
  nnoremap <leader>c <Plug>CommentaryLine
 
+" vim go
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
 "
 nmap <F6> :set textwidth=72<CR>gqj:set textwidth=79<CR>
 
