@@ -1,102 +1,50 @@
-
-set nocompatible " Fuck VI... That's for grandpas.
+set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-
-set rtp+=~/tools/fzf
+set rtp+=~/.fzf
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
 " in the following format:
 " Bundle 'githubUsername/repoName'
 
-" Let vundle manage itself:
-Bundle 'gmarik/vundle'
-
-" Just a shitload of color schemes.
-" https://github.com/flazz/vim-colorschemes#current-colorschemes
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 Bundle 'flazz/vim-colorschemes'
-
-" Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'junegunn/fzf.vim'
-
-" Support for easily toggling comments.
 Bundle 'tpope/vim-commentary'
-
-" better text views
 Plugin 'reedes/vim-pencil'
-" go
 Plugin 'fatih/vim-go'
-
-" stuffs
 Bundle 'vim-scripts/vis'
-" indent + str(key)In addtion to the above plugins, you'll likely need some for individual
-" non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
-" these are required for me, but depending on what code you write, obviously
-" this may differ for you.
-
-" vim many syntax
 Bundle 'sheerun/vim-polyglot'
-" Proper JSON filetype detection, and support.
 Bundle 'leshill/vim-json'
-
-" vim already has syntax support for javascript, but the indent support is
-" horrid. This fixes that.
 Bundle 'pangloss/vim-javascript'
-
-" vim indents HTML very poorly on it's own. This fixes a lot of that.
 Bundle 'indenthtml.vim'
-
-" I write markdown a lot. This is a good syntax.
 Bundle 'tpope/vim-markdown'
-
-" File Browser
 Bundle 'scrooloose/nerdtree'
-
-" Syntax Checker
 Plugin 'scrooloose/syntastic'
-
-" Autofrmatter
 Plugin 'Chiel92/vim-autoformat'
-
-" PEP8
 Plugin 'nvie/vim-flake8'
-" Autoflake
 Plugin 'tell-k/vim-autopep8'
-" Ansible
 Plugin 'pearofducks/ansible-vim'
-
-" Supertab
-Plugin 'ervandew/supertab' " silver searcher
-
-" Fast grep
+Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
-
-" Utlisnips
 Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-
-" git goodness
 Plugin 'tpope/vim-fugitive'
-
-" git gutter w/ figitive
 Plugin 'airblade/vim-gitgutter'
-
-" csv things
 Plugin 'chrisbra/csv.vim'
+Plugin 'ledger/vim-ledger'
+Plugin 'nathangrigg/vim-beancount'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Fold the things
 set foldmethod=syntax
 set foldlevelstart=1
-" Vim-airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 
-" Python Folding
-Plugin 'tmhedberg/SimpylFold'
 let javaScript_fold=1         " JavaScript
 let perl_fold=1               " Perl
 let php_folding=1             " PHP
@@ -115,13 +63,8 @@ let g:ultisnips_python_style="sphinx"
 
 " source ~/.base.vimrc
 
-" Ctrl-p conf
-"let g:ctrlp_max_height = 30
-"
-"" follow symlinks
-"let g:ctrlp_follow_symlinks = 1
-
-
+map <C-p> :FZF<CR>
+" fzf files
 map <C-p> :FZF<CR>
 map <C-n> :NERDTreeToggle<CR>
 
@@ -133,9 +76,6 @@ let g:flake8_show_in_file = 1
 " let g:UltiSnipsExpandTrigger="<c-t>"
 " let g:UltiSnipsListSnippets="<c-t-l>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "  don't f-with my comments when in python
@@ -163,15 +103,27 @@ let b:javascript_fold = 1
 
 source ~/.mega.vimrc
 
+" ledger
+let g:ledger_bin = 'hledger'
+
 " Airline settings
 " always show status bar
 set laststatus=2
-let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 set background=dark
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also http://sunaku.github.io/vim-256color-bce.html
+    set t_ut=
+endif
+"set t_8f=^[[38;2;%lu;%lu;%lum        " set foreground color
+"set t_8b=^[[48;2;%lu;%lu;%lum        " set background color
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme gruvbox
-
-
-
-
+set t_Co=256                         " Enable 256 colors
+set termguicolors                    " Enable GUI colors for the terminal to get truecolor
+" let g:gruvbox_contrast_light='light'

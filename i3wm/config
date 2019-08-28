@@ -29,11 +29,9 @@ font pango:Hack-Regular 10
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# i3 lock
 bindsym $mod+Control+l exec --no-startup-id sleep 1 && xset dpms force suspend
 exec xset s 300
 exec --no-startup-id xss-lock -- i3lock --color=474747 --ignore-empty-password --show-failed-attempts &
-
 
 # FUCK CAPS LOCK
 exec xmodmap -e "clear lock" #disable caps lock switch
@@ -43,12 +41,12 @@ exec xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 exec xrdb -merge ~/.Xresources
 
 # safe setting for file dialogs etc
-floating_minimum_size 200 x 200
 floating_maximum_size 1200 x 1200
-
 
 # disable touchscreen
 exec xinput disable 9
+
+exec --no-startup-id udiskie --tray --use-udisks2 &
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
@@ -63,7 +61,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec ~/.local/bin/st -f "Hack-Regular:style=Semibold:size=10"
+bindsym $mod+Return exec .local/bin/st -t "Simple Terminal" -f "Hack-Regular:style=Semibold:size=10"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -199,7 +197,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command py3status -c ~/.i3status.conf
-        font pango:Hack-Regular 8
+        font pango:Ubuntu Mono derivative Powerline 12
         colors {
             # bar background color
             background $bg
@@ -211,7 +209,7 @@ bar {
             inactive_workspace   $darkgray $darkgray $yellow
             active_workspace     $darkgray $darkgray $yellow
             urgent_workspace     $red $red $bg
-    }
+        }
 }
 
 
