@@ -9,7 +9,7 @@
 !Xft.hintstyle:              hintslight
 ! Xft.lcdfilter: lcddefault
 !Xft.font:     xft:Ubuntu Mono:style=Regular:size=17
-Xft.dpi: 192
+Xft.dpi: 180
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
@@ -43,9 +43,6 @@ URxvt.allow_bold:           false
 URxvt.font:     xft:Ubuntu Mono:style=Regular:size=12
 URxvt*boldFont: xft:Ubuntu Mono:style=Bold:size=12
 !URxvt*font: xft:Monospace:pixelsize=14
-URxvt.font: xft:Ubuntu Mono:style=Regular:size=12
-!URxvt*font: xft:Monospace:pixelsize=14
-URxvt*boldFont: xft:Ubuntu Mono:style=Regular:size=12
 
 ! Fix font space
 URxvt*letterSpace: -1

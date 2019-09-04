@@ -11,7 +11,7 @@
 
 # disable touchscreen
 # exec xinput --disable 9
-# exec xrandr --dpi 160
+# exec xrandr --dpi 220
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -197,7 +197,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command py3status -c ~/.i3status.conf
-        font pango:Ubuntu Mono derivative Powerline 12
+        font pango:Ubuntu Mono derivative Powerline 10
         colors {
             # bar background color
             background $bg
