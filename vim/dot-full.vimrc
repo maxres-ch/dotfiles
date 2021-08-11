@@ -28,7 +28,6 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'nvie/vim-flake8'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'pearofducks/ansible-vim'
-Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -40,6 +39,8 @@ Plugin 'nathangrigg/vim-beancount'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'ycm-core/YouCompleteMe'
+Plugin 'sebdah/vim-delve'
 
 " Fold the things
 set foldmethod=syntax
@@ -77,11 +78,11 @@ let g:flake8_show_in_file = 1
 " let g:UltiSnipsListSnippets="<c-t-l>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 "  don't f-with my comments when in python
 au! FileType python setl nosmartindent
 " better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<c-j>"
 " " let g:UltiSnipsJumpForwardTrigger = "<tab>"
 " "" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = '<s-tab>'
@@ -101,7 +102,12 @@ set pastetoggle=<F11>
 let javascript_enable_domhtmlcss = 1
 let b:javascript_fold = 1
 
-source ~/.mega.vimrc
+" source ~/.mega.vimrc
+
+" vim-go no fold
+let g:go_fmt_experimental = 1
+let g:go_fmt_command = "goimports"
+let g:goimports = 1 
 
 " ledger
 let g:ledger_bin = 'hledger'
@@ -119,6 +125,8 @@ if &term =~ '256color'
     " see also http://sunaku.github.io/vim-256color-bce.html
     set t_ut=
 endif
+
+source ~/.mega.vimrc
 "set t_8f=^[[38;2;%lu;%lu;%lum        " set foreground color
 "set t_8b=^[[48;2;%lu;%lu;%lum        " set background color
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

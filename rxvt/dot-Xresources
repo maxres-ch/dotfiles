@@ -9,7 +9,7 @@
 !Xft.hintstyle:              hintslight
 ! Xft.lcdfilter: lcddefault
 !Xft.font:     xft:Ubuntu Mono:style=Regular:size=17
-Xft.dpi: 180
+Xft.dpi: 192
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull

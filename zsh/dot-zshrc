@@ -1,107 +1,105 @@
-export GEOMETRY_PROMPT_SUFFIX=$'\n'
+# Sensible, short .zshrc
+# Gist page: git.io/vSBRk  
+# Raw file:  curl -L git.io/sensible-zshrc
 
-# path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+. ~/.zsh.d/git-prompt.sh
 
-ZSH_THEME="oxide"
+# foreground color
+FG_COLOR_BASE03=%F{#bdae93}
+FG_COLOR_BASE02=%F{0}
+FG_COLOR_BASE01=%F{4}
+FG_COLOR_BASE00=%F{11}
+FG_COLOR_BASE0=%F{12}
+FG_COLOR_BASE1=%F{14}
+FG_COLOR_BASE2=%F{7}
+FG_COLOR_BASE3=%F{15}
+FG_COLOR_YELLOW=%F{#fabd2f}
+FG_COLOR_ORANGE=%F{#fe8019}
+FG_COLOR_RED=%F{#fb4034}
+FG_COLOR_MAGENTA=%F{#b16286}
+FG_COLOR_VIOLET=%F{#d3869b}
+FG_COLOR_BLUE=%F{#83a598}
+FG_COLOR_CYAN=%F{#8ec07c}
+FG_COLOR_GREEN=%F{#b8bb26}
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=15
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode bgnotify)
-source $ZSH/oh-my-zsh.sh
-
-
-# User configuration
-export PATH="$PATH:$HOME/.local/bin"
-
-# export MANPATH="/usr/local/man:$MANPATH"
-# autoload edit-command-line
-# zle -N edit-command-line
-# bindkey -M vicmd v edit-command-line
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+FG_COLOR_FG0=%F{#fbf1c7}
+FG_COLOR_GRAY=%F{#928374}
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# GNU and BSD (macOS) ls flags aren't compatible
+ls --version &>/dev/null
+if [ $? -eq 0 ]; then
+  lsflags="--color --group-directories-first -F"
+else
+  lsflags="-GF"
+  export CLICOLOR=1
+fi
 
-# fuckin vi mode ftw
-bindkey -v
+# Aliases
+alias ls="ls ${lsflags}"
 
-# add reverse search, cause bindkey or plugin hates you and unsets it.
-bindkey '^R' history-incremental-search-backward
+# More suitable for .zshenv
+EDITOR=vim
+DOTENV=FULL
+# PROMPT='%n@%m %3~%(!.#.$)%(?.. [%?]) '
+#PROMPT='%{$FG_COLOR_GREEN%}[%*]%{$reset_color%} %{$FG_COLOR_YELLOW%}%~%{$reset_color%}
+#        ❯ '
+# PROMPT='%{$FG_COLOR_GREEN%}❯ '                                                                            
+autoload -Uz promptinit
+promptinit
+prompt walters yellow
+# PS1="%{\e[0;31m%}%m%{\e[0m%}"
+#PS1="[@%m %c$(__git_ps1 " (%s)")]
+#%B%(?..[%?] )%b%n@%U%m%u>"
+# History settings
+HISTFILE=~/.history-zsh
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history           # allow multiple sessions to append to one history
+setopt bang_hist                # treat ! special during command expansion
+setopt extended_history         # Write history in :start:elasped;command format
+setopt hist_expire_dups_first   # expire duplicates first when trimming history
+setopt hist_find_no_dups        # When searching history, don't repeat
+setopt hist_ignore_dups         # ignore duplicate entries of previous events
+setopt hist_ignore_space        # prefix command with a space to skip it's recording
+setopt hist_reduce_blanks       # Remove extra blanks from each command added to history
+setopt hist_verify              # Don't execute immediately upon history expansion
+setopt inc_append_history       # Write to history file immediately, not when shell quits
+setopt share_history            # Share history among all sessions
+
+# Tab completion
+autoload -Uz compinit && compinit
+setopt complete_in_word         # cd /ho/sco/tm<TAB> expands to /home/scott/tmp
+setopt auto_menu                # show completion menu on succesive tab presses
+setopt autocd                   # cd to a folder just by typing it's name
+ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&' # These "eat" the auto prior space after a tab complete
+
+# MISC
+setopt interactive_comments     # allow # comments in shell; good for copy/paste
+unsetopt correct_all            # I don't care for 'suggestions' from ZSH
+export BLOCK_SIZE="'1"          # Add commas to file sizes
+
+# PATH
+typeset -U path                 # keep duplicates out of the path
+path+=(.)                       # append current directory to path (controversial)
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-export DATE=`date +%Y-%m-%d`
-export EDITOR='vim'
-unsetopt auto_name_dirs
-export NVM_DIR="$HOME/.nvm"
-export DOTENV="FULL"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/usr/sbin"
-. ~/projects/dotfiles/zsh/funcs.sh
 
-[[ -s "$HOME/.local.zshrc" ]] && . "$HOME/.local.zshrc"
+# BINDKEY
+bindkey -v
+bindkey '\e[3~' delete-char
+bindkey '^r' history-incremental-search-backward
+bindkey '^f' history-search-forward
 
-export DOTENV="FULL"
-export LANG="en_US.UTF-8"
-[[ -s "$HOME/.local.zshrc" ]] && . "$HOME/.local.zshrc"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey ' '  magic-space
+
+export GOPATH=~/projects/go/
+export PATH=$HOME/.local/bin:$PATH:$GOPATH/bin
+export DOTENV=FULL
+export EDITOR=vim
+alias k=kubectl
+
+[[ -f ~/.local.zshrc ]] && source ~/.local.zshrc

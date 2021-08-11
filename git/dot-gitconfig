@@ -10,5 +10,5 @@
     interactive = auto
     ui = true
     pager = true
-[url "git@priv.git:"]
-	insteadOf = https://git.ofmax.li
+#[url "git@priv.git:"]
+#	insteadOf = https://git.ofmax.li
