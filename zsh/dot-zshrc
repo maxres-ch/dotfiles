@@ -2,7 +2,6 @@
 # Gist page: git.io/vSBRk  
 # Raw file:  curl -L git.io/sensible-zshrc
 
-. ~/.zsh.d/git-prompt.sh
 
 # foreground color
 FG_COLOR_BASE03=%F{#bdae93}
@@ -48,6 +47,7 @@ DOTENV=FULL
 autoload -Uz promptinit
 promptinit
 prompt walters yellow
+setopt prompt_sp
 # PS1="%{\e[0;31m%}%m%{\e[0m%}"
 #PS1="[@%m %c$(__git_ps1 " (%s)")]
 #%B%(?..[%?] )%b%n@%U%m%u>"
@@ -86,7 +86,10 @@ path+=(.)                       # append current directory to path (controversia
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+bindkey -a '^[[3~' vi-delete-char
 
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 # BINDKEY
 bindkey -v
@@ -96,10 +99,8 @@ bindkey '^f' history-search-forward
 
 bindkey ' '  magic-space
 
-export GOPATH=~/projects/go/
-export PATH=$HOME/.local/bin:$PATH:$GOPATH/bin
-export DOTENV=FULL
+# add local scripts
+export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=vim
-alias k=kubectl
 
 [[ -f ~/.local.zshrc ]] && source ~/.local.zshrc

@@ -43,10 +43,6 @@ set colorcolumn=80
 nnoremap ; :
 vnoremap ; :
 
- " So we don't have to reach for escape to leave insert mode.
-
- inoremap jf <esc>
-
  " create new vsplit, and switch to it.
  noremap <leader>v <C-w>v
 
@@ -80,19 +76,9 @@ vnoremap ; :
  " Below are some 'sane' (IMHO) defaults for a couple of the above plugins I
  " referenced.
 
- " Map the key for toggling comments with vim-commentary
- nnoremap <leader>c <Plug>CommentaryLine
+" Map the key for toggling comments with vim-commentary
+nnoremap <leader>c <Plug>CommentaryLine
 
-" vim go
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-"
 nmap <F6> :set textwidth=72<CR>gqj:set textwidth=79<CR>
 
 let dotenv=$DOTENV
