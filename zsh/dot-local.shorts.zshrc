@@ -168,4 +168,3 @@ close_all_prs () {
 cleanns() {
     kubectl get ns $1 -o json | jq '.spec.finalizers = []' | kubectl replace --raw "/api/v1/namespaces/$1/finalize" -f -
 }
-
