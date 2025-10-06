@@ -1,6 +1,8 @@
 [alias]
     root = rev-parse --show-toplevel
     graph = log --graph --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(60,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    dlog = "-c diff.external=difft log -p --ext-diff"
+    dft = difftool
 [user]
 	name = Max Resnick
     email = max@ofmax.li
@@ -17,9 +19,8 @@
 	gpgSign = true
 [core]
 	hookspath = ~/projects/git-hooks/hooks
-    pager = delta
-[interactive]
-    # diffFilter = delta
+# [interactive]
+#     diffFilter = difft
 [push]
 	default = current
 [url "ssh://git@github.com/"]
@@ -28,14 +29,21 @@
     conflictstyle = diff3
 
 [diff]
-    colorMoved = default
+    tool = difftastic
+
+[difftool "difftastic"]
+    prompt = true
+    cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+    difftool = true
 
 [delta]
-    # features = side-by-side line-numbers decorations
-    features = line-numbers decorations
-    syntax-theme = gruvbox-light
-    # plus-style = syntax "#003800"
-    # minus-style = syntax "#3f0001"
+    features = side-by-side line-numbers decorations
+    # features = line-numbers decorations
+    syntax-theme = gruvbox-dark
+    plus-style = syntax "#003800"
+    minus-style = syntax "#3f0001"
     true-color = always
 
 [delta "decorations"]
