@@ -48,13 +48,15 @@ autoload -Uz promptinit
 promptinit
 prompt walters yellow
 setopt prompt_sp
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 # PS1="%{\e[0;31m%}%m%{\e[0m%}"
 #PS1="[@%m %c$(__git_ps1 " (%s)")]
 #%B%(?..[%?] )%b%n@%U%m%u>"
 # History settings
 HISTFILE=~/.history-zsh
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt append_history           # allow multiple sessions to append to one history
 setopt bang_hist                # treat ! special during command expansion
 setopt extended_history         # Write history in :start:elasped;command format

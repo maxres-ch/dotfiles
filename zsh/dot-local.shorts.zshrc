@@ -24,14 +24,19 @@ review () {
     gh pr -R $ORG/$repo $action ${@} $pr_num
 }
 
+alias yless="jless --yaml"
 # source ~/.fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
 # key bindings                         
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
-bindkey "^C" fzf-cd-widget
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh 
+source ~/.zsh-fzf-history-search/zsh-fzf-history-search.zsh
+bindkey "^c" fzf-cd-widget
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_COMPLETION_TRIGGER=''
-bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
+bindkey '^t' fzf-completion
+bindkey '^u' $fzf_default_completion
+zstyle ':completion:*' fzf-search-display true
+
+export FZF_DEFAULT_COMMAND="fd --follow --exclude '.git' --exclude 'node_modules' --exclude '~/go' --exclude '~/Library'"
 
 PROJECT_HOME=${PROJECT_OPEN_HOME:-$HOME/projects}
 projectEditorOpen() {
@@ -62,13 +67,13 @@ bindkey '^p' projectEditorOpen_widget
 bindkey '^o' cdProjecDir_widget
 
 # # Kubectl                                                                                                                                
-command -v fzf >/dev/null 2>&1 && {                                                                                                        
-        source <(kubectl completion zsh | sed 's#${requestComp} 2>/dev/null#${requestComp} 2>/dev/null | head -n 1 | fzf  --multi=0 #g')  
-}                                                                                                                                          
+command -v fzf >/dev/null 2>&1 && { 
+        source <(kubectl completion zsh | sed 's#${requestComp} 2>/dev/null#${requestComp} 2>/dev/null | ghead -n -1 | fzf  --multi=0 #g')
+}
+
 alias k=kubectl                                                                                                                            
 alias kgp="kubectl get po"                                                                                                                 
 alias kl="kubectl logs"                                                                                                                    
-# complete -F __start_kubectl k kgp kl                                                                                                       
 
 
 rprompt() {
@@ -168,3 +173,4 @@ close_all_prs () {
 cleanns() {
     kubectl get ns $1 -o json | jq '.spec.finalizers = []' | kubectl replace --raw "/api/v1/namespaces/$1/finalize" -f -
 }
+
